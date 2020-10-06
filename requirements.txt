@@ -1,0 +1,6 @@
+selenium==3.141.0
+abs-web-testing==0.2
+pytest==6.1.1
+pytest-json-report==1.2.1
+pytest-html==2.1.1
+PyYAML==5.3.1
