@@ -1,7 +1,7 @@
 import pytest
 
 from abswt.actions import Actions
-from src.sas_kodzi_pop.main import SasKodzi
+from libs.sas_kodzi_pop.main import SasKodzi
 
 
 @pytest.mark.blog

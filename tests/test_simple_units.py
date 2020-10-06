@@ -1,6 +1,6 @@
 import pytest
 
-from src.funcs import add
+from libs.funcs.math import add
 
 
 @pytest.mark.unit
