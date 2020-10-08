@@ -9,23 +9,34 @@ Using venv
 ```sh
 python -m venv env
 env\Scripts\activate
-pip install -r requirements.txt
+(env) > pip install -r requirements.txt
 ```
 
-## Run tests (todo log-cli-level)
+## Run tests by markers using .bat file
+
+Command: `run-tests.bat "{markers}" "{root-tests-folder}"`  
+
+```sh
+> run-tests.bat "unit" "tests/"
+> run-tests.bat "unit and math" "tests/"
+> run-tests.bat "unit or blog" "tests/"
+```
+
+## Run tests
 
 all tests
 
 ```sh
 env\Scripts\activate
-pytest -vvv --html=report.html --json-report --json-report-file=report.json
+(env) > pytest -vvv --html=report.html --json-report --json-report-file=report.json
 ```
 
 marked tests
 
 ```sh
-env\Scripts\activate
-pytest -vvv --html=report.html --json-report --json-report-file=report.json -m "unit"
-pytest -vvv --html=report.html --json-report --json-report-file=report.json -m "unit and blog"
-pytest -vvv --html=report.html --json-report --json-report-file=report.json -m "unit or blog"
+> env\Scripts\activate
+(env) > pytest -vvv --html=report.html --json-report --json-report-file=report.json -m "unit"
+(env) > pytest -vvv --html=report.html --json-report --json-report-file=report.json -m "unit and blog"
+(env) > pytest -vvv --html=report.html --json-report --json-report-file=report.json -m "unit or blog"
 ```
+

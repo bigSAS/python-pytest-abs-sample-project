@@ -1,5 +1,6 @@
-import pytest, yaml
+import pytest, yaml, os, logging
 from dataclasses import dataclass
+from datetime import datetime
 from abswt.elements import FluentFinder
 from abswt.actions import Actions
 from selenium import webdriver
@@ -37,3 +38,9 @@ def actions(driver, config):
         wait_for_condition_timeout=config.wait_for_condition_timeout,
         wait_between=config.wait_between
     )
+
+
+@pytest.fixture(scope='session', autouse=True)
+def set_abs_logging_levels():
+    logging.getLogger('abs-actions').setLevel(logging.INFO)
+    logging.getLogger('abs-finder').setLevel(logging.DEBUG)
