@@ -6,8 +6,8 @@ from abswt.actions import Actions
 from selenium import webdriver
 
 
-DEFAULT_CONFIG_PATH = os.path.dirname(os.path.realpath(__file__)) + '/example.config.yaml'
-CONFIG_PATH = os.environ.get('E2E_CONFIG_PATH', DEFAULT_CONFIG_PATH)
+DEFAULT_ABS_CONFIG_PATH = os.path.dirname(os.path.realpath(__file__)) + '/config.yaml'
+ABS_CONFIG_PATH = os.environ.get('ABS_CONFIG_PATH', DEFAULT_ABS_CONFIG_PATH)
 
 
 @dataclass
@@ -19,15 +19,15 @@ class Config:
 
 
 @pytest.fixture(scope='session')
-def config() -> Config:
-    with open(CONFIG_PATH, 'r', encoding='utf-8') as c:
+def abs_config() -> Config:
+    with open(ABS_CONFIG_PATH, 'r', encoding='utf-8') as c:
         data = yaml.load(c, Loader=yaml.FullLoader)
         return Config(**data)
 
 
 @pytest.fixture(scope='session')
-def driver(config):
-    driver = webdriver.Chrome(executable_path=config.wd_path)
+def driver(abs_config):
+    driver = webdriver.Chrome(executable_path=abs_config.wd_path)
     driver.maximize_window()
     yield driver
 
@@ -35,12 +35,12 @@ def driver(config):
 
 
 @pytest.fixture(scope='session')
-def actions(driver, config):
-    finder = FluentFinder(webdriver=driver, default_timeout=config.find_element_timeout)
+def actions(driver, abs_config):
+    finder = FluentFinder(webdriver=driver, default_timeout=abs_config.find_element_timeout)
     return Actions(
         finder=finder,
-        wait_for_condition_timeout=config.wait_for_condition_timeout,
-        wait_between=config.wait_between
+        wait_for_condition_timeout=abs_config.wait_for_condition_timeout,
+        wait_between=abs_config.wait_between
     )
 
 
