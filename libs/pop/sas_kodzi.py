@@ -8,7 +8,11 @@ class Component(Page): pass  # type alias
 
 
 class OpenPostButton(Component):
-    POST_BUTTON = Locator(Using.XPATH, "//section[@class='{css_class}' and contains(., '{post_title}')]//a[contains(., 'Czytaj')]")
+    POST_BUTTON = Locator(
+        Using.XPATH,
+        "//section[@class='{css_class}' and contains(., '{post_title}')]"
+        "//a[contains(., 'Czytaj')]"
+    )
 
     def click(self, post_title: str) -> None:
         # parameterized selector example + condition override
@@ -27,7 +31,6 @@ class SasKodzi(Page):
     def goto_posts(self) -> None:
         self.actions.click(self.BLOG_BUTTON.get_by(), timeout=3)
         self.actions.wait_for(XpathExists("//h1[@class='blog-list-title']"))
-
 
     def open_post(self, post_title: str) -> None:
         OpenPostButton(self.actions).click(post_title)

@@ -5,7 +5,6 @@ from abswt.conditions import XpathExists
 
 class Search(Page):
     url = 'https://google.pl'
-
     SEARCH_INPUT = Locator(Using.NAME, 'q')
 
     def search_for(self, text: str) -> None:
