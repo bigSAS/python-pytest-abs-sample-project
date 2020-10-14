@@ -6,6 +6,10 @@ from abswt.actions import Actions
 from selenium import webdriver
 
 
+DEFAULT_CONFIG_PATH = os.path.dirname(os.path.realpath(__file__)) + '/example.config.yaml'
+CONFIG_PATH = os.environ.get('E2E_CONFIG_PATH', DEFAULT_CONFIG_PATH)
+
+
 @dataclass
 class Config:
     wd_path: str
@@ -16,7 +20,7 @@ class Config:
 
 @pytest.fixture(scope='session')
 def config() -> Config:
-    with open('example.config.yaml', 'r', encoding='utf-8') as c:
+    with open(CONFIG_PATH, 'r', encoding='utf-8') as c:
         data = yaml.load(c, Loader=yaml.FullLoader)
         return Config(**data)
 

@@ -2,6 +2,7 @@ import pytest
 from abswt.actions import Actions
 from libs.google import Search
 
+
 @pytest.mark.google
 @pytest.mark.parametrize("text", [
     "bigSAS github",
