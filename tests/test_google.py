@@ -1,6 +1,7 @@
 import pytest
+
 from abswt.actions import Actions
-from libs.google import Search
+from libs.pop.google_search import Search
 
 
 @pytest.mark.google
